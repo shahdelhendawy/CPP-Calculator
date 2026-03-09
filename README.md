@@ -1,4 +1,4 @@
-# 🧮 Modern C++ Win32 Calculator
+# 🧮 C++ Calculator
 
 A lightweight, high-performance calculator built with **C++** and **Win32 API**.
 
