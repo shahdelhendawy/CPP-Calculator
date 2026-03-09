@@ -7,7 +7,6 @@ using namespace std;
 string expression = "";
 string result = "";
 
-// --- الحساب الرياضي ---
 int precedence(char op) {
     if (op == '+' || op == '-') return 1;
     if (op == '*' || op == '/' || op == '%') return 2;
@@ -61,7 +60,6 @@ string formatNum(double v) {
     return s;
 }
 
-// --- رسم زر ---
 void drawButton(int x, int y, int w, int h, const char* label, int color) {
     setfillstyle(SOLID_FILL, color);
     bar(x, y, x+w, y+h);
@@ -72,7 +70,6 @@ void drawButton(int x, int y, int w, int h, const char* label, int color) {
     outtextxy(x + w/2 - tw/2, y + h/2 - th/2, const_cast<char*>(label));
 }
 
-// --- التحقق من الضغط على زر ---
 bool isInside(int mx, int my, int x, int y, int w, int h) {
     return (mx >= x && mx <= x+w && my >= y && my <= y+h);
 }
@@ -80,57 +77,47 @@ bool isInside(int mx, int my, int x, int y, int w, int h) {
 int main() {
     initwindow(350, 550, "Calculator");
 
-    // رسم منطقة العرض
     setcolor(WHITE);
     rectangle(20, 20, 310, 80);
 
-    // رسم الأزرار
     int x = 20, y = 120, w = 65, h = 50;
 
-    // الصف 1
     drawButton(x, y, w, h, "7", DARKGRAY);
     drawButton(x+75, y, w, h, "8", DARKGRAY);
     drawButton(x+150, y, w, h, "9", DARKGRAY);
     drawButton(x+225, y, w, h, "/", LIGHTGRAY);
 
-    // الصف 2
     y += 60;
     drawButton(x, y, w, h, "4", DARKGRAY);
     drawButton(x+75, y, w, h, "5", DARKGRAY);
     drawButton(x+150, y, w, h, "6", DARKGRAY);
     drawButton(x+225, y, w, h, "*", LIGHTGRAY);
 
-    // الصف 3
     y += 60;
     drawButton(x, y, w, h, "1", DARKGRAY);
     drawButton(x+75, y, w, h, "2", DARKGRAY);
     drawButton(x+150, y, w, h, "3", DARKGRAY);
     drawButton(x+225, y, w, h, "-", LIGHTGRAY);
 
-    // الصف 4
     y += 60;
     drawButton(x, y, w, h, "0", DARKGRAY);
     drawButton(x+75, y, w, h, ".", DARKGRAY);
     drawButton(x+150, y, w, h, "%", LIGHTGRAY);
     drawButton(x+225, y, w, h, "+", LIGHTGRAY);
 
-    // الصف 5
     y += 60;
     drawButton(x, y, w, h, "√", LIGHTGRAY);
     drawButton(x+75, y, 105, h, "C", LIGHTGRAY);
     drawButton(x+190, y, 100, h, "<-", LIGHTGRAY);
 
-    // الصف 6
     y += 60;
     drawButton(x, y, 290, 50, "=", COLOR(255,140,0));
 
-    // حلقة رئيسية
     while (true) {
         if (ismouseclick(WM_LBUTTONDOWN)) {
             int mx, my;
             getmouseclick(WM_LBUTTONDOWN, mx, my);
 
-            // تحقق من الأزرار
             if (isInside(mx,my,20,120,65,50)) expression += "7";
             else if (isInside(mx,my,95,120,65,50)) expression += "8";
             else if (isInside(mx,my,170,120,65,50)) expression += "9";
@@ -165,7 +152,6 @@ int main() {
                 catch (...) { result = "Undefined"; }
             }
 
-            // تحديث العرض
             setfillstyle(SOLID_FILL, BLACK);
             bar(21,21,309,79);
             setcolor(WHITE);
